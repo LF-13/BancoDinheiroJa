@@ -1,6 +1,6 @@
 package com.dinheiroJaBanco.controller;
 
-public class Conta {
+public abstract class Conta {
     private Pessoa titular;
     private int agencia;
     private int numeroConta;
@@ -34,10 +34,6 @@ public class Conta {
 
     public double getSaldo() {
         return saldo;
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
     }
 
     public void depositar(double valor) {
