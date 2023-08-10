@@ -1,6 +1,8 @@
 package com.dinheiroJaBanco.controller;
 
+import java.math.BigDecimal;
+
 public interface Investimento {
-    double tempoDeInvestimeto(double valor, double tempo, double taxa);
+    BigDecimal tempoDeInvestimeto(BigDecimal valor, BigDecimal tempo, BigDecimal taxa);
 
 }

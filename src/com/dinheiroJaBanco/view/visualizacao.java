@@ -7,6 +7,8 @@ import com.dinheiroJaBanco.controller.Conta;
 import com.dinheiroJaBanco.controller.Pessoa;
 import com.dinheiroJaBanco.controller.Poupanca;
 
+import java.math.BigDecimal;
+
 public class visualizacao {
     public static void main(String[] args) {
 
@@ -35,15 +37,23 @@ public class visualizacao {
 //        System.out.printf("%nSaldo atualizado: %.2f", conta2.getSaldo());
 
 
-        Conta contaTeste1 = new Poupanca(titular1, 1313, 5555, 400);
-        Conta contaTeste2 = new Poupanca(titular2, 1414, 6666, 0);
-        double valorTransferido = 100;
-        contaTeste1.transferir(contaTeste2, valorTransferido);
+        Conta contaTeste1 = new Poupanca(titular1, 1313, 5555, new BigDecimal("400"));
+        Conta contaTeste2 = new Poupanca(titular2, 1414, 6666, new BigDecimal("0"));
+        double valorTransferido = 40;
+        contaTeste1.transferir(contaTeste2, new BigDecimal(valorTransferido));
 
         System.out.println("Saldo contaTeste1: " + contaTeste1.getSaldo());
         System.out.println("Saldo contaTeste2: " + contaTeste2.getSaldo());
 
-        Poupanca contaPoupanca1 = new Poupanca(titular1, 12443, 564654, 400);
-        System.out.printf("tempo + o valor: %.2f", contaPoupanca1.tempoDeInvestimeto(100, 3, 10));
+        Poupanca contaPoupanca1 = new Poupanca(titular1, 12443, 564654, new BigDecimal("400"));
+        BigDecimal valor = new BigDecimal("100");
+        BigDecimal tempo = new BigDecimal("3");
+        BigDecimal taxa = new BigDecimal("10");
+
+        BigDecimal resultado = contaPoupanca1.tempoDeInvestimeto(valor, tempo, taxa);
+
+
+        System.out.printf("Valor + Tempo * Taxa: %.2f%n", resultado);
+
     }
 }

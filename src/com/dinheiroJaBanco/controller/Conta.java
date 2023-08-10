@@ -1,15 +1,17 @@
 package com.dinheiroJaBanco.controller;
 
+import java.math.BigDecimal;
+
 public abstract class Conta {
     private Pessoa titular;
     private int agencia;
     private int numeroConta;
-    private double saldo;
+    private BigDecimal saldo;
 
     public Conta() {
     }
 
-    public Conta(Pessoa titular, int agencia, int numeroConta, double saldo) {
+    public Conta(Pessoa titular, int agencia, int numeroConta, BigDecimal saldo) {
         this.titular = titular;
         this.agencia = agencia;
         this.numeroConta = numeroConta;
@@ -32,22 +34,24 @@ public abstract class Conta {
         this.numeroConta = numeroConta;
     }
 
-    public double getSaldo() {
+    public BigDecimal getSaldo() {
         return saldo;
     }
 
-    public void depositar(double valor) {
-        this.saldo = saldo + valor;
+    public void depositar(BigDecimal valor) {
+        this.saldo = saldo.add(valor);
+//        this.saldo = saldo + valor;
     }
 
-    public void sacar(double valor) {
-        this.saldo = saldo - valor;
+    public void sacar(BigDecimal valor) {
+        this.saldo = saldo.subtract(valor);
+//        this.saldo = saldo - valor;
 
     }
 
-    public double transferir(Conta contaDestino, double valor) {
-        if (saldo >= valor) {
-            saldo -= valor;
+    public BigDecimal transferir(Conta contaDestino, BigDecimal valor) {
+        if (saldo.compareTo(valor) >= 0) {
+            saldo = saldo.subtract(valor);
             contaDestino.depositar(valor);
             System.out.println("Transferência realizada com sucesso!");
             System.out.println("       🔰💲EXTRATO🔰💲");
